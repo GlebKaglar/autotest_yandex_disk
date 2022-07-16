@@ -1,5 +1,6 @@
 from environments.selenium_env.autotest_yandex_disk.pages.base_page import BasePage
 from environments.selenium_env.autotest_yandex_disk.pages.disk_page import DiskPage
+from environments.selenium_env.autotest_yandex_disk.pages.docviewer_page import DocViewerPage
 
 
 def test_copied_file(driver):
@@ -9,8 +10,11 @@ def test_copied_file(driver):
     base_page.go_to_disk()
 
     disk_page = DiskPage(driver)
-    disk_page.copy()
-    disk_page.open_folder_task_1()
-    disk_page.delete_files()
-    disk_page.check_task_1()
-    disk_page.logout()
+    disk_page.create_folder()
+    disk_page.open_folder_task_2()
+    disk_page.upload_file()
+    disk_page.open_file()
+
+    docviewer_page = DocViewerPage(driver)
+    docviewer_page.check_text()
+    docviewer_page.logout()

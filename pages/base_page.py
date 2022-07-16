@@ -59,7 +59,7 @@ class BasePage():
         disk_btn = self.driver.find_element(*YandexMainPageLocators.DISK_BTN)
         disk_btn.click()
 
-        print('Переходим на взаимодействие со вкладкой, где открылся Диск')
+        print('Переходим на вкладкe, где открылся Диск')
         window_disk = self.driver.window_handles[1]
         self.driver.switch_to.window(window_disk)
         time.sleep(5)

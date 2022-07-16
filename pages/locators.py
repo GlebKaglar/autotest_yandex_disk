@@ -14,6 +14,7 @@ class LoginFormLocators():
 
 
 class DiskPageLocators():
+    # Локаторы первого задания
     FILE_FOR_COPY = (By.CSS_SELECTOR, '[aria-label="Файл для копирования.txt"]')
     CONTEXT_COPY = (By.CSS_SELECTOR, '[value="copy"]')
     CONTEXT_DELETE = (By.CSS_SELECTOR, '[value="delete"]')
@@ -24,3 +25,17 @@ class DiskPageLocators():
     USER_PIC = (By.CSS_SELECTOR, '[aria-label="Аккаунт"]')
     LOGOUT_BTN = (By.CSS_SELECTOR, '[aria-label="Выйти из аккаунта"]')
 
+    # Локаторы задания со звездочкой
+    CREATE_SMTH = (By.CSS_SELECTOR, '.LeftColumn__Buttons button')
+    CREATE_FOLDER = (By.CSS_SELECTOR, '[aria-label="Папку"]')
+    RENAME_FIELD = (By.CSS_SELECTOR, 'form > span > input')
+    SAVE_BTN = (By.CSS_SELECTOR, '.confirmation-dialog__footer > button')
+    FOLDER = (By.CSS_SELECTOR, '[aria-label="Папка для задания со звездочкой"]')
+    UPLOAD_BTN = (By.CSS_SELECTOR, '[type="file"]')
+    FILE = (By.CSS_SELECTOR, '.listing-item_theme_tile')
+
+
+class DocViewerPageLocators():
+    TEXT_LIST = (By.CSS_SELECTOR, 'div p')
+    USER_PIC_DOCVIEWER = (By.CSS_SELECTOR, '.header__side-right > div')
+    LOGOUT_BTN_DOCVIEWER = (By.CSS_SELECTOR, 'ul li:nth-child(2)')
