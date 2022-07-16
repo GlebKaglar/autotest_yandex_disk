@@ -7,6 +7,7 @@ class YandexMainPageLocators():
 
 
 class LoginFormLocators():
+    MAIL_BTN = (By.CSS_SELECTOR, '[data-type="login"]')
     LOGIN_FIELD = (By.ID, 'passp-field-login')
     SIGN_IN_BTN = (By.ID, 'passp:sign-in')
     PASS_FIELD = (By.ID, 'passp-field-passwd')

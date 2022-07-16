@@ -1,7 +1,6 @@
 import time
 
 from selenium.common import NoSuchElementException
-from selenium.webdriver.common.by import By
 
 from .locators import YandexMainPageLocators, LoginFormLocators
 
@@ -27,6 +26,11 @@ class BasePage():
         authorisation_btn = self.driver.find_element(*YandexMainPageLocators.AUTHORISATION_BTN)
         authorisation_btn.click()
 
+        assert self.is_element_present(*LoginFormLocators.MAIL_BTN), 'MAIL_BTN not found'
+        print('Выбираем способ входа через почту')
+        mail_btn = self.driver.find_element(*LoginFormLocators.MAIL_BTN)
+        mail_btn.click()
+
         assert self.is_element_present(*LoginFormLocators.LOGIN_FIELD), 'LOGIN_FIELD not found'
         print('Вводим логин')
         login_field = self.driver.find_element(*LoginFormLocators.LOGIN_FIELD)
@@ -42,6 +46,7 @@ class BasePage():
         pass_field = self.driver.find_element(*LoginFormLocators.PASS_FIELD)
         pass_field.send_keys(password)
 
+        assert self.is_element_present(*LoginFormLocators.SIGN_IN_BTN), 'SIGN_IN_BTN not found'
         print('Нажимаем Войти после ввода пароля')
         sign_in_btn = self.driver.find_element(*LoginFormLocators.SIGN_IN_BTN)
         sign_in_btn.click()

@@ -13,18 +13,23 @@ class DiskPage(BasePage):
     def copy(self):
         print('Копируем файл')
         action = ActionChains(self.driver)
+        assert self.is_element_present(*DiskPageLocators.FILE_FOR_COPY), 'FILE_FOR_COPY not found'
         file_for_cope = self.driver.find_element(*DiskPageLocators.FILE_FOR_COPY)
         action.context_click(file_for_cope).perform()
+        assert self.is_element_present(*DiskPageLocators.CONTEXT_COPY), 'CONTEXT_COPY not found'
         context_copy = self.driver.find_element(*DiskPageLocators.CONTEXT_COPY)
         context_copy.click()
+        assert self.is_element_present(*DiskPageLocators.NEW_FOLDER_CONTEXT_COPY), 'NEW_FOLDER_CONTEXT_COPY not found'
         new_folder_context_copy = self.driver.find_element(*DiskPageLocators.NEW_FOLDER_CONTEXT_COPY)
         new_folder_context_copy.click()
+        assert self.is_element_present(*DiskPageLocators.COPY_BTN), 'COPY_BTN not found'
         copy_btn = self.driver.find_element(*DiskPageLocators.COPY_BTN)
         copy_btn.click()
         time.sleep(3)
 
     def open_folder(self):
         print('Открываем папку')
+        assert self.is_element_present(*DiskPageLocators.NEW_FOLDER_MAIN), 'NEW_FOLDER_MAIN not found'
         new_folder_main = self.driver.find_element(*DiskPageLocators.NEW_FOLDER_MAIN)
         action = ActionChains(self.driver)
         action.double_click(new_folder_main).perform()
@@ -45,8 +50,10 @@ class DiskPage(BasePage):
         time.sleep(2)
 
     def logout(self):
+        assert self.is_element_present(*DiskPageLocators.USER_PIC), 'USER_PIC not found'
         user_pic = self.driver.find_element(*DiskPageLocators.USER_PIC)
         user_pic.click()
+        assert self.is_element_present(*DiskPageLocators.LOGOUT_BTN), 'LOGOUT_BTN not found'
         logout_btn = self.driver.find_element(*DiskPageLocators.LOGOUT_BTN)
         logout_btn.click()
         time.sleep(2)
