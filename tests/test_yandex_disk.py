@@ -1,5 +1,5 @@
-from environments.selenium_env.autotest_yandex_disk.pages.base_page import BasePage
-from environments.selenium_env.autotest_yandex_disk.pages.disk_page import DiskPage
+from ..pages.base_page import BasePage
+from ..pages.disk_page import DiskPage
 
 
 def test_copied_file(driver):
