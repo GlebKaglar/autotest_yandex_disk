@@ -3,7 +3,7 @@ from ..pages.disk_page import DiskPage
 from ..pages.docviewer_page import DocViewerPage
 
 
-def test_copied_file(driver):
+def test_upload_file_to_new_folder(driver):
     print('Запуск теста')
     base_page = BasePage(driver)
     base_page.login()

@@ -2,7 +2,7 @@ from ..pages.base_page import BasePage
 from ..pages.disk_page import DiskPage
 
 
-def test_copied_file(driver):
+def test_copy_file_to_previously_created_folder(driver):
     print('Запуск теста')
     base_page = BasePage(driver)
     base_page.login()
