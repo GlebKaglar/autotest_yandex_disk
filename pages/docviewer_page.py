@@ -15,7 +15,7 @@ class DocViewerPage(BasePage):
             text_current += text_string + '\n'
         text_current = text_current[:-1]
 
-        assert text_current == self.text_origin, 'Текст не соответствует ожиданиям!'
+        assert text_current == self.text_origin, 'Текст не соответствует ожиданиям.'
 
     def logout(self):
         """Выходит из аккаунта"""

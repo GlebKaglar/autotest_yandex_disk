@@ -28,8 +28,8 @@ class DiskPage(BasePage):
 
     def delete_files(self):
         """Перебирает список на удаление"""
-        files_list = self.driver.find_elements(*DiskPageLocators.FILES_LIST)
-        for file in files_list:
+        files = self.driver.find_elements(*DiskPageLocators.FILES_LIST)
+        for file in files:
             file_name = file.get_attribute("aria-label")
             if file_name != self.file_name_origin:
                 self.delete_file(file)
@@ -41,14 +41,14 @@ class DiskPage(BasePage):
 
     def check_ER_1(self):
         """Проверяет с ОР_1: 'Скопированный файл находится в папке'"""
-        files_list = self.driver.find_elements(*DiskPageLocators.FILES_LIST)
-        assert len(files_list) == 1, 'В папке больше одного файла!'
+        files = self.driver.find_elements(*DiskPageLocators.FILES_LIST)
+        assert len(files) == 1, 'В папке больше одного файла.'
 
     def check_ER_2(self):
         """Проверяет с ОР_2: 'Название соответствует оригиналу'"""
-        files_list = self.driver.find_elements(*DiskPageLocators.FILES_LIST)
-        file_name = files_list[0].get_attribute("aria-label")
-        assert file_name == self.file_name_origin, 'Название файла не соответствует оригиналу!'
+        files = self.driver.find_elements(*DiskPageLocators.FILES_LIST)
+        file_name = files[0].get_attribute("aria-label")
+        assert file_name == self.file_name_origin, 'Название файла не соответствует оригиналу.'
 
 # Задача 2 (со звездочкой)
     def create_folder(self):
@@ -56,6 +56,7 @@ class DiskPage(BasePage):
         self.find_element(*DiskPageLocators.CREATE_SMTH).click()
         self.find_element(*DiskPageLocators.CREATE_FOLDER).click()
 
+        # В поле ввода вводим название папки, удалив перед этим текст плейсхолдера
         rename_field = self.find_element(*DiskPageLocators.RENAME_FIELD)
         rename_field.send_keys(Keys.CONTROL, 'a')
         rename_field.send_keys(Keys.BACK_SPACE)
