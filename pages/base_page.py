@@ -1,6 +1,6 @@
-import time
-
-from selenium.common import NoSuchElementException
+from selenium.webdriver import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from .locators import YandexMainPageLocators, LoginFormLocators
 
@@ -8,60 +8,34 @@ from .locators import YandexMainPageLocators, LoginFormLocators
 class BasePage():
     def __init__(self, driver):
         self.driver = driver
+        self.action = ActionChains(self.driver)
 
-    def is_element_present(self, how, what):
-        try:
-            self.driver.find_element(how, what)
-        except NoSuchElementException:
-            return False
-        return True
+    def find_element(self, how, what):
+        return WebDriverWait(self.driver, 10).until(
+          EC.presence_of_element_located((how, what))
+        )
 
     def login(self):
-        print('Авторизация')
+        """Авторизовывается"""
         login = 'glebtestodin'
         password = '_GlebTest1'
 
-        assert self.is_element_present(*YandexMainPageLocators.AUTHORISATION_BTN), 'AUTHORISATION_BTN not found'
-        print('Нажимаем Войти на главной странице Яндекса')
-        authorisation_btn = self.driver.find_element(*YandexMainPageLocators.AUTHORISATION_BTN)
-        authorisation_btn.click()
-
-        assert self.is_element_present(*LoginFormLocators.MAIL_BTN), 'MAIL_BTN not found'
-        print('Выбираем способ входа через почту')
-        mail_btn = self.driver.find_element(*LoginFormLocators.MAIL_BTN)
-        mail_btn.click()
-
-        assert self.is_element_present(*LoginFormLocators.LOGIN_FIELD), 'LOGIN_FIELD not found'
-        print('Вводим логин')
-        login_field = self.driver.find_element(*LoginFormLocators.LOGIN_FIELD)
-        login_field.send_keys(login)
-
-        assert self.is_element_present(*LoginFormLocators.SIGN_IN_BTN), 'SIGN_IN_BTN not found'
-        print('Нажимаем Войти в форме авторизации')
-        sign_in_btn = self.driver.find_element(*LoginFormLocators.SIGN_IN_BTN)
-        sign_in_btn.click()
-
-        assert self.is_element_present(*LoginFormLocators.PASS_FIELD), 'PASS_FIELD not found'
-        print('Вводим пароль')
-        pass_field = self.driver.find_element(*LoginFormLocators.PASS_FIELD)
-        pass_field.send_keys(password)
-
-        assert self.is_element_present(*LoginFormLocators.SIGN_IN_BTN), 'SIGN_IN_BTN not found'
-        print('Нажимаем Войти после ввода пароля')
-        sign_in_btn = self.driver.find_element(*LoginFormLocators.SIGN_IN_BTN)
-        sign_in_btn.click()
-
-        time.sleep(5)
+        self.find_element(*YandexMainPageLocators.AUTHORISATION_BTN).click()
+        self.find_element(*LoginFormLocators.MAIL_BTN).click()
+        self.find_element(*LoginFormLocators.LOGIN_FIELD).send_keys(login)
+        self.find_element(*LoginFormLocators.SIGN_IN_BTN).click()
+        self.find_element(*LoginFormLocators.PASS_FIELD).send_keys(password)
+        self.find_element(*LoginFormLocators.SIGN_IN_BTN).click()  # Еще раз получаем кнопку, т.к. обновился DOM
 
     def go_to_disk(self):
-        assert self.is_element_present(*YandexMainPageLocators.DISK_BTN), 'DISK_BTN not found'
-        print('Открываем Диск')
-        disk_btn = self.driver.find_element(*YandexMainPageLocators.DISK_BTN)
-        disk_btn.click()
+        """Открывает Диск и переходит на вкладку, где открылся Диск"""
+        self.find_element(*YandexMainPageLocators.DISK_BTN).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
 
-        print('Переходим на вкладкe, где открылся Диск')
-        window_disk = self.driver.window_handles[1]
-        self.driver.switch_to.window(window_disk)
-        time.sleep(5)
+    def context_click(self, smth):
+        """Клик ПКМ"""
+        self.action.context_click(smth).perform()
 
-
+    def double_click(self, smth):
+        """Двойной клик"""
+        self.action.double_click(smth).perform()

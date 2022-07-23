@@ -4,7 +4,10 @@ from ..pages.docviewer_page import DocViewerPage
 
 
 def test_upload_file_to_new_folder(driver):
-    print('Запуск теста')
+    """
+    Проверяет загрузку текстового файла, а также проверить его текст.
+    ОР: Текст соответствует ожиданиям
+    """
     base_page = BasePage(driver)
     base_page.login()
     base_page.go_to_disk()
@@ -16,5 +19,5 @@ def test_upload_file_to_new_folder(driver):
     disk_page.open_file()
 
     docviewer_page = DocViewerPage(driver)
-    docviewer_page.check_text()
+    docviewer_page.check_ER()
     docviewer_page.logout()
