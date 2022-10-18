@@ -4,7 +4,7 @@ from selenium import webdriver
 
 @pytest.fixture(scope='function')
 def driver():
-    url = 'https://www.yandex.ru/'
+    url = 'https://www.ya.ru/'
     options = webdriver.ChromeOptions()
     options.add_argument('--start-maximized')
     options.add_experimental_option('excludeSwitches', ['enable-logging'])  # убирает ненужные системные логи варнинги (usb/ssl)

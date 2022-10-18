@@ -29,6 +29,7 @@ class BasePage():
 
     def go_to_disk(self):
         """Открывает Диск и переходит на вкладку, где открылся Диск"""
+        self.find_element(*YandexMainPageLocators.AVATAR_BTN).click()
         self.find_element(*YandexMainPageLocators.DISK_BTN).click()
         self.driver.switch_to.window(self.driver.window_handles[1])
 

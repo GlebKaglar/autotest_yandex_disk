@@ -2,8 +2,9 @@ from selenium.webdriver.common.by import By
 
 
 class YandexMainPageLocators():
-    AUTHORISATION_BTN = (By.CSS_SELECTOR, '[data-statlog="notifications.mail.logout.enter"]')
-    DISK_BTN = (By.CSS_SELECTOR, '[data-statlog="notifications.mail.login.disk"]')
+    AUTHORISATION_BTN = (By.CSS_SELECTOR, '[data-statlog="headline.enter"]')
+    AVATAR_BTN = (By.CLASS_NAME, 'avatar__image-wrapper')
+    DISK_BTN = (By.CSS_SELECTOR, '[data-statlog="mail.login.usermenu.disk"]')
 
 
 class LoginFormLocators():

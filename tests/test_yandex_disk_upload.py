@@ -5,7 +5,7 @@ from ..pages.docviewer_page import DocViewerPage
 
 def test_upload_file_to_new_folder(driver):
     """
-    Проверяет загрузку текстового файла, а также проверить его текст.
+    Проверяет загрузку текстового файла, затем проверяет его текст.
     ОР: Текст соответствует ожиданиям
     """
     authorization(driver)
